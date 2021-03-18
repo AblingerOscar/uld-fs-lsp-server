@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.6.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "uld-fs-lsp-server", "uld-fs-lsp-server\uld-fs-lsp-server.fsproj", "{AD12A6C6-9C49-4CE8-965A-4E661EC60144}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD12A6C6-9C49-4CE8-965A-4E661EC60144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD12A6C6-9C49-4CE8-965A-4E661EC60144}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD12A6C6-9C49-4CE8-965A-4E661EC60144}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AD12A6C6-9C49-4CE8-965A-4E661EC60144}.Debug|x64.Build.0 = Debug|Any CPU
+		{AD12A6C6-9C49-4CE8-965A-4E661EC60144}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AD12A6C6-9C49-4CE8-965A-4E661EC60144}.Debug|x86.Build.0 = Debug|Any CPU
+		{AD12A6C6-9C49-4CE8-965A-4E661EC60144}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD12A6C6-9C49-4CE8-965A-4E661EC60144}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD12A6C6-9C49-4CE8-965A-4E661EC60144}.Release|x64.ActiveCfg = Release|Any CPU
+		{AD12A6C6-9C49-4CE8-965A-4E661EC60144}.Release|x64.Build.0 = Release|Any CPU
+		{AD12A6C6-9C49-4CE8-965A-4E661EC60144}.Release|x86.ActiveCfg = Release|Any CPU
+		{AD12A6C6-9C49-4CE8-965A-4E661EC60144}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {78E54513-0721-4025-B4A3-109DDD760282}
+	EndGlobalSection
+EndGlobal
