@@ -3,14 +3,19 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>uld_fs_lsp_server</RootNamespace>
+    <RootNamespace>ULD.Fs.LSP</RootNamespace>
+    <DefaultNamespace>ULD.Fs.LSP</DefaultNamespace>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Utils\ListUtils.fs" />
+    <Compile Include="Utils\MultilineText.fs" />
+    <Compile Include="Parsing\Parser.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FSharpPlus" Version="1.1.7" />
     <PackageReference Include="uld.fs.serialisation" Version="1.0.0" />
   </ItemGroup>
 

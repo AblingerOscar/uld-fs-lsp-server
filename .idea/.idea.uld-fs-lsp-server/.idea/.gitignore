@@ -1,0 +1,13 @@
+﻿# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/modules.xml
+/projectSettingsUpdater.xml
+/contentModel.xml
+/.idea.uld-fs-lsp-server.iml
+# Datasource local storage ignored files
+/../../../../../../../../../:\Users\Oscar\Projects\uld\uld-fs-lsp-server\.idea\.idea.uld-fs-lsp-server\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
