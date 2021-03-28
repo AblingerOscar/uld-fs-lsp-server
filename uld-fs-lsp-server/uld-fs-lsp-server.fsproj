@@ -10,7 +10,11 @@
   <ItemGroup>
     <Compile Include="Utils\ListUtils.fs" />
     <Compile Include="Utils\MultilineText.fs" />
+    <Compile Include="Utils\ActivePatternUtils.fs" />
     <Compile Include="Parsing\Parser.fs" />
+    <Compile Include="Parsing\LLNonDeterministic\LLNDParseState.fs" />
+    <Compile Include="Parsing\LLNonDeterministic\LLNDParserConfiguration.fs" />
+    <Compile Include="Parsing\LLNonDeterministic\LLNDParser.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

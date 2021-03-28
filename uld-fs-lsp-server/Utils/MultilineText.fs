@@ -1,5 +1,6 @@
 ﻿namespace ULD.Fs.LSP.Utils
 
+open System
 open FSharpPlus
 
 [<Struct>]
@@ -10,6 +11,17 @@ type TextPosition =
   /// 0 up to (including) the length of the line (signifying
   /// the cursor being after the last character)
   val Column: int
+
+  new(line, column) = { Line = line; Column = column }
+
+  override this.ToString () = $"TextPosition({this.Line}, {this.Column})"
+  member this.IsBefore (other: TextPosition) =
+    match this.Line - other.Line, this.Column - other.Column with
+    | i, _ when i < 0 -> true
+    | i, _ when i > 0 -> false
+    | 0, i when i < 0 -> true
+    | 0, i when i > 0 -> false
+    | _ -> false
 
 /// <summary>
 /// Due to the definition of
@@ -22,10 +34,14 @@ type TextRange =
   val Start: TextPosition
   val End: TextPosition
 
+  new(start, end') = { Start = start; End = end' }
+  override this.ToString () = $"TextRange({this.Start}, {this.End})"
+
 type MultilineText =
   struct
     val private rawText: string list
     new(text: string list) = { rawText = text }
+    override this.ToString () = $"""MultilineText({this.AsText |> String.concat "\n"})"""
 
     static member Empty = MultilineText List.Empty
 

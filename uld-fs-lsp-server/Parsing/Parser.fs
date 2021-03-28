@@ -1,10 +1,13 @@
 ﻿namespace ULD.Fs.LSP.Parsing
 
+open ULD.Fs.DTOs
 open ULD.Fs.LSP.Utils
 
 [<Struct>]
 type MarkerLane =
   { Positions: TextPosition list }
+  static member Default: MarkerLane =
+    { Positions = List.empty }
 
 [<Struct>]
 type Completion =
@@ -12,9 +15,18 @@ type Completion =
     Text: string }
 
 [<Struct>]
-type ParseSuccess =
+type ParseUnfinished =
   { IdentifierLane: MarkerLane
-    PossibleCompletions: Completion }
+    PossibleCompletions: Completion list }
+
+[<Struct>]
+type Continuation =
+  { Text: string }
+
+[<Struct>]
+type ParseFinished =
+  { IdentifierLane: MarkerLane
+    PossibleContinuations: Continuation list }
 
 [<Struct>]
 type ExpectedText =
@@ -23,17 +35,20 @@ type ExpectedText =
 [<Struct>]
 type ParseFailure =
   { FailedAt: TextPosition
-    ExpectedAfterwards: ExpectedText }
+    ExpectedAfterwardsOneOf: ExpectedText list }
 
 [<Struct>]
 type ParseResult =
-  | Success of success: ParseSuccess
+  | Unfinished of unfinishedSuccess: ParseUnfinished
+  | Finished of finishedSuccess: ParseFinished
   | Failure of failure: ParseFailure
 
 type Parser<'State> = interface
-    abstract member parseRange: TextRange -> MultilineText -> 'State
-    abstract member continueParsingFrom: 'State -> MultilineText -> 'State
-
-    abstract member finish: 'State -> ParseResult
+    abstract member ParseStartUntil: TextPosition -> MultilineText -> 'State
+    abstract member ContinueParsingUntil: TextPosition -> 'State -> MultilineText -> 'State
+    abstract member Finish: 'State -> ParseResult
   end
 
+type ParserProvider<'Parser, 'State when 'Parser :> Parser<'State>> = interface
+    abstract member SupportsLanguageDefinition: LanguageDefinition -> bool
+  end
