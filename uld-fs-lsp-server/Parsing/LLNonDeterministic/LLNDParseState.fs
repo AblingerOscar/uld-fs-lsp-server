@@ -81,21 +81,21 @@ type ProductionSymbol =
         yield ParseChar (charSet.Contains >> not)
     ]
 
-type Production =
-  { Symbols: ProductionSymbol list }
-  static member ofSymbols (symbols: SymbolDefinition list) =
-    { Symbols = List.collect ProductionSymbol.ofSymbol symbols }
-
 type Lanes =
   { IdentifierLane: MarkerLane }
   static member Default: Lanes =
     { IdentifierLane = MarkerLane.Default }
 
+type Production =
+  { Symbols: ProductionSymbol list
+    Lanes: Lanes }
+  static member ofSymbols (symbols: SymbolDefinition list) =
+    { Symbols = List.collect ProductionSymbol.ofSymbol symbols
+      Lanes = Lanes.Default }
+
 type LLNDParseState =
   { TextPosition: TextPosition
-    Lanes: Lanes
     CurrentProductions: Production list }
   static member Default: LLNDParseState =
     { TextPosition = TextPosition (0, 0)
-      Lanes = Lanes.Default
       CurrentProductions = List.empty }

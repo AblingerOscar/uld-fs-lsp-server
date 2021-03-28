@@ -35,4 +35,10 @@
           )
         |> List.head
 
-      { ChooseFavouredParseResult = chooseFavouredParseResult }
+      {
+        /// Choose the favoured parse result from a list of
+        /// possible parse results.
+        /// This list will never be empty – it might, however
+        /// contain only one element.
+        ChooseFavouredParseResult = chooseFavouredParseResult
+      }

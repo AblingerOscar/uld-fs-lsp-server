@@ -16,22 +16,24 @@ type LLNDParser(langDef: LanguageDefinition, parserConfig: LLNDParserConfigurati
     failwith ""
 
   member this.Finish (state: LLNDParseState) =
-    let anyProductionIsFinished =
-      state.CurrentProductions
-      |> List.exists (fun prod -> prod.Symbols.Length = 0)
+    let transformProductionInfo (production: Production) =
+      if List.isEmpty production.Symbols then
+        Finished { IdentifierLane = production.Lanes.IdentifierLane
+                   PossibleContinuations = List.empty }
+      else
+        // Unexpected EOI
+        // (more input could have the parsing finish successfully)
+        Unfinished { IdentifierLane = production.Lanes.IdentifierLane
+                     PossibleCompletions = List.empty }
 
     if List.isEmpty state.CurrentProductions then
       // failed at some point
       Failure { FailedAt = state.TextPosition
                 ExpectedAfterwardsOneOf = List.empty }
-    elif not anyProductionIsFinished then
-      // Unexpected EOI
-      // (more input could have the parsing finish successfully)
-      Unfinished { IdentifierLane = state.Lanes.IdentifierLane
-                   PossibleCompletions = List.empty }
     else
-      Finished { IdentifierLane = state.Lanes.IdentifierLane
-                 PossibleContinuations = List.empty }
+      state.CurrentProductions
+      |> List.map transformProductionInfo
+      |> parserConfig.ChooseFavouredParseResult
 
   member this.ParseStateUntil endPos mText =
     this.ContinueParsingUntil endPos { LLNDParseState.Default with CurrentProductions = startProductions } mText
